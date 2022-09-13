@@ -16,22 +16,26 @@ class Main extends Component {
     this.setState({loading: true});
     fetch(`https://www.omdbapi.com/?apikey=1d8278e2&s=matrix`)
         .then(response => response.json())
-        .then(data => this.setState({movies: data.Search, loading: false}))
-  }.catch((err)=>{
-    console.error(err)
-  this.setState({loading: false});
-  })
+        .then(data => this.setState({movies: data.Search, loading: false})
+        ).catch((err)=>{
+      console.error(err)
+      this.setState({loading: false});
+    });
+  }
+
 
 
   searchMovies = (str,type='all') => {
     this.setState({loading: true});
     fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str}${type !== 'all' ? `&type=${type}` : ''}`)
         .then(response => response.json())
-        .then(data => this.setState({movies: data.Search, loading: false}))
-  }.catch((err)=>{
-  console.error(err)
-  this.setState({loading: false});
-})
+        .then(data => this.setState({movies: data.Search, loading: false})
+        ).catch((err)=>{
+      console.error(err)
+      this.setState({loading: false});
+    });
+  }
+
 
   render() {
     const {movies, loading} = this.state;
